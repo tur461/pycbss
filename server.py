@@ -88,7 +88,7 @@ if __name__ == '__main__':
     from twisted.python import log
     from twisted.internet import reactor
     cpr = CP.CPR()
-    fnm = f'sslogs_{int(T.time())}.txt'
+    fnm = f'./logs/sslogs_{int(T.time())}.txt'
     print(f'Starting server on [ws://]localhost:9090\nAll logs will goto .\{fnm} file')
     f = open(fnm, 'w')
     log.startLogging(f)
