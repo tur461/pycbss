@@ -94,7 +94,7 @@ def addDoctorWSConnection(O, ctx):
 	return True
 		
 def removeDoctorWSConnection(O, did):
-	print(f'Removing doctor did: {did}from WSConnection List.')
+	print(f'Removing doctor did: {did} from WSConnection List.')
 	t = O.lDoctorWSConnections.copy()
 	for x in t:
 		if x.ID == did:
