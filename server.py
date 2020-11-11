@@ -1,5 +1,4 @@
 import CommonProperties as CP
-import DPEntity as dpe
 from autobahn.twisted.websocket import WebSocketServerProtocol, \
     WebSocketServerFactory
 
