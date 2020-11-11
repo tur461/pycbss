@@ -86,13 +86,17 @@ if __name__ == '__main__':
     import time as T
     from twisted.python import log
     from twisted.internet import reactor
+    host = '0.0.0.0'
+    port = '9090'
+    proto = 'ws'
+
     cpr = CP.CPR()
     fnm = f'./logs/sslogs_{int(T.time())}.txt'
-    print(f'Starting server on [ws://]localhost:9090\nAll logs will goto .\{fnm} file')
+    print(f'Starting server on {proto}://{host}:{port}\n\nAll logs will goto .\{fnm} file')
     f = open(fnm, 'w')
     log.startLogging(f)
 
-    factory = WebSocketServerFactory("ws://127.0.0.1:9090")
+    factory = WebSocketServerFactory(f'{proto}://{host}:{port}')
     factory.protocol = MyServerProtocol
     # factory.setProtocolOptions(maxConnections=2)
 
