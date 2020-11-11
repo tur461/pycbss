@@ -168,6 +168,18 @@ def notifyConnectedPatientsAbtCurDoc(O, did, name, pids, typ):
                 if x.ID in pids:
                         send(x, d)
         #print(f'notifying connected patients: {td} about did: {did}, pids: {pids}')
+
+def notifyMeAboutConnectedDoctor(O, ctx, pid):
+        d = {
+                'from': 'server', 
+                'for': 'patient', 
+                'type': 'doctor_available'
+        }
+        t = O.lDoctorWSConnections
+        for x in t:
+                if pid in x.PidList:
+                        d['msg'] = f'{x.ID}:{x.Name}:online'
+                        send(ctx, j2s(d))
                                 
 def notifyDoctorAboutPatient(O, pid, dmid, typ):
         #td = {}
@@ -247,6 +259,7 @@ def handlePatConOpen(O, ctx):
         addPatientWSConnection(O, ctx)
         addConnectedPatientId(O, id, dmid)
         notifyDoctorAboutPatient(O, id, dmid, "patient_available")
+        notifyMeAboutConnectedDoctor(O, ctx, id)
 
 def handlePatConClose(O, ctx):
         notifyDoctorAboutPatient(O, ctx.ID, ctx.dynmkId, "patient_disconnected")
