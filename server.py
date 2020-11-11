@@ -42,6 +42,7 @@ class MyServerProtocol(WebSocketServerProtocol):
                     self.IsDuplicate = True
                     CP.closeCon(self, rz)
                     return
+                self.PidList = mParam['pids']
                 CP.addPidList_doctor(self, mParam['pids'])
                 CP.handleDocConOpen(cpr, self)
             elif mParam['from'] == 'patient':
